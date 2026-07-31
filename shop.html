@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | কুন্দন শৈলী</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <span><i>🚚</i> Free Delivery on Orders Over ৳1000</span>
+                <span><i>📞</i> +880 1234-567890</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="https://wa.me/8801234567890" target="_blank"><i>💬</i> WhatsApp</a>
+                <a href="login.html" class="auth-link"><i>👤</i> Login</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">কু</div>
+                <div class="logo-text"><h1>কুন্দন শৈলী</h1><span>Premium Glass Bangles</span></div>
+            </a>
+            <div class="header-center">
+                <div class="search-box">
+                    <input type="text" id="shopSearch" placeholder="Search for bangles...">
+                    <button>🔍</button>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="wishlist.html" class="header-action"><i>🤍</i><span class="badge wishlist-count">0</span><span>Wishlist</span></a>
+                <a href="cart.html" class="header-action"><i>🛒</i><span class="badge cart-count">0</span><span>Cart</span></a>
+            </div>
+            <div class="mobile-toggle"><span></span><span></span><span></span></div>
+        </div>
+        <nav class="nav-menu">
+            <div class="nav-menu-content">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
+                    <li><a href="shop.html?category=bridal">Collection</a></li>
+                    <li><a href="shop.html?sort=new">New Arrival</a></li>
+                    <li><a href="shop.html?category=bridal">Bridal</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="index.html">Home</a> <i>▸</i> <span>Shop</span>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="shop-layout">
+                <aside class="sidebar">
+                    <div class="sidebar-widget">
+                        <h4>Categories</h4>
+                        <ul class="filter-list">
+                            <li><label><input type="checkbox" class="category-filter" value="bridal"> Bridal (45)</label></li>
+                            <li><label><input type="checkbox" class="category-filter" value="premium"> Premium (32)</label></li>
+                            <li><label><input type="checkbox" class="category-filter" value="festival"> Festival (58)</label></li>
+                            <li><label><input type="checkbox" class="category-filter" value="daily"> Daily Wear (76)</label></li>
+                            <li><label><input type="checkbox" class="category-filter" value="kids"> Kids (24)</label></li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h4>Price Range</h4>
+                        <div class="price-range">
+                            <input type="number" id="minPrice" placeholder="Min" min="0">
+                            <span style="color: var(--gray);">-</span>
+                            <input type="number" id="maxPrice" placeholder="Max" min="0">
+                        </div>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h4>Rating</h4>
+                        <ul class="filter-list">
+                            <li><label><input type="checkbox" class="rating-filter" value="5"> ★★★★★ (5 Star)</label></li>
+                            <li><label><input type="checkbox" class="rating-filter" value="4"> ★★★★☆ (4 Star & Up)</label></li>
+                            <li><label><input type="checkbox" class="rating-filter" value="3"> ★★★☆☆ (3 Star & Up)</label></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <div>
+                    <div class="shop-header">
+                        <p id="resultCount">Showing all 12 products</p>
+                        <select class="sort-select" id="sortSelect">
+                            <option value="default">Sort by: Default</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Top Rated</option>
+                            <option value="new">Newest First</option>
+                        </select>
+                    </div>
+                    <div class="products-grid" id="shopProducts"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" style="padding: 40px 0 20px;">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>© 2026 কুন্দন শৈলী. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/8801234567890" class="whatsapp-float" target="_blank">💬</a>
+    <button class="scroll-top">↑</button>
+
+    <script src="js/main.js"></script>
+    <script>
+        let currentProducts = [...products];
+        const shopProducts = document.getElementById('shopProducts');
+        const resultCount = document.getElementById('resultCount');
+
+        function renderShopProducts(list) {
+            Render.products(shopProducts, list);
+            resultCount.textContent = `Showing ${list.length} product${list.length !== 1 ? 's' : ''}`;
+        }
+
+        function filterProducts() {
+            let filtered = [...products];
+
+            // Category filter
+            const checkedCategories = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value);
+            if (checkedCategories.length > 0) {
+                filtered = filtered.filter(p => checkedCategories.includes(p.category));
+            }
+
+            // Price filter
+            const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+            const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+            filtered = filtered.filter(p => p.price >= minPrice && p.price <= maxPrice);
+
+            // Rating filter
+            const checkedRatings = Array.from(document.querySelectorAll('.rating-filter:checked')).map(cb => parseInt(cb.value));
+            if (checkedRatings.length > 0) {
+                const minRating = Math.min(...checkedRatings);
+                filtered = filtered.filter(p => p.rating >= minRating);
+            }
+
+            // Search
+            const searchTerm = document.getElementById('shopSearch').value.toLowerCase();
+            if (searchTerm) {
+                filtered = filtered.filter(p => p.name.toLowerCase().includes(searchTerm) || p.category.toLowerCase().includes(searchTerm));
+            }
+
+            // Sort
+            const sortValue = document.getElementById('sortSelect').value;
+            if (sortValue === 'price-low') filtered.sort((a, b) => a.price - b.price);
+            else if (sortValue === 'price-high') filtered.sort((a, b) => b.price - a.price);
+            else if (sortValue === 'rating') filtered.sort((a, b) => b.rating - a.rating);
+            else if (sortValue === 'new') filtered.sort((a, b) => (b.badge === 'new' ? 1 : 0) - (a.badge === 'new' ? 1 : 0));
+
+            currentProducts = filtered;
+            renderShopProducts(filtered);
+        }
+
+        // URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        const sortParam = urlParams.get('sort');
+
+        if (categoryParam) {
+            document.querySelectorAll('.category-filter').forEach(cb => {
+                if (cb.value === categoryParam) cb.checked = true;
+            });
+        }
+        if (sortParam) {
+            document.getElementById('sortSelect').value = sortParam;
+        }
+
+        // Event listeners
+        document.querySelectorAll('.category-filter, .rating-filter').forEach(cb => cb.addEventListener('change', filterProducts));
+        document.getElementById('minPrice').addEventListener('input', filterProducts);
+        document.getElementById('maxPrice').addEventListener('input', filterProducts);
+        document.getElementById('shopSearch').addEventListener('input', filterProducts);
+        document.getElementById('sortSelect').addEventListener('change', filterProducts);
+
+        filterProducts();
+    </script>
+</body>
+</html>
