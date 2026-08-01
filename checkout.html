@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | কুন্দন শৈলী</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left"><span><i>🔒</i> Secure Checkout</span></div>
+            <div class="top-bar-right"><a href="login.html" class="auth-link"><i>👤</i> Login</a></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">কু</div>
+                <div class="logo-text"><h1>কুন্দন শৈলী</h1><span>Premium Glass Bangles</span></div>
+            </a>
+            <div class="header-actions">
+                <a href="cart.html" class="header-action"><i>🛒</i><span class="badge cart-count">0</span><span>Cart</span></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="index.html">Home</a> <i>▸</i> <a href="cart.html">Cart</a> <i>▸</i> <span>Checkout</span>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Checkout</h2>
+                <p>Complete your order by filling in the details below</p>
+            </div>
+            <div class="checkout-layout">
+                <div class="checkout-form">
+                    <form id="checkoutForm" onsubmit="placeOrder(event)">
+                        <div class="form-section">
+                            <h3>👤 Contact Information</h3>
+                            <div class="form-row">
+                                <div class="form-group"><label>Full Name *</label><input type="text" id="cName" required placeholder="Your full name"></div>
+                                <div class="form-group"><label>Phone Number *</label><input type="tel" id="cPhone" required placeholder="01XXXXXXXXX"></div>
+                            </div>
+                            <div class="form-group"><label>Email Address</label><input type="email" id="cEmail" placeholder="your@email.com"></div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>📍 Shipping Address</h3>
+                            <div class="form-group"><label>Full Address *</label><textarea id="cAddress" rows="3" required placeholder="House, Road, Area"></textarea></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>District *</label><input type="text" id="cDistrict" required placeholder="e.g. Dhaka"></div>
+                                <div class="form-group"><label>Division *</label>
+                                    <select id="cDivision" required>
+                                        <option value="">Select Division</option>
+                                        <option>Dhaka</option><option>Chittagong</option><option>Sylhet</option>
+                                        <option>Rajshahi</option><option>Khulna</option><option>Barisal</option>
+                                        <option>Rangpur</option><option>Mymensingh</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>💳 Payment Method</h3>
+                            <div class="payment-methods">
+                                <label class="payment-method active">
+                                    <input type="radio" name="payment" value="cod" checked onchange="selectPayment(this)">
+                                    <span style="font-size: 1.5rem;">💵</span>
+                                    <span>Cash on Delivery</span>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="payment" value="bkash" onchange="selectPayment(this)">
+                                    <span style="font-size: 1.5rem;">📱</span>
+                                    <span>bKash</span>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="payment" value="nagad" onchange="selectPayment(this)">
+                                    <span style="font-size: 1.5rem;">💰</span>
+                                    <span>Nagad</span>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="payment" value="ssl" onchange="selectPayment(this)">
+                                    <span style="font-size: 1.5rem;">💳</span>
+                                    <span>SSLCommerz (Card/Bank)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 20px; padding: 18px;"><span>✓</span> Place Order</button>
+                    </form>
+                </div>
+
+                <div class="cart-summary">
+                    <h3>Order Summary</h3>
+                    <div id="checkoutItems"></div>
+                    <div class="summary-row" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(212, 175, 55, 0.2);"><span>Subtotal</span><span id="chkSubtotal">৳0</span></div>
+                    <div class="summary-row"><span>Shipping</span><span id="chkShipping">৳0</span></div>
+                    <div class="summary-row total"><span>Total</span><span id="chkTotal">৳0</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" style="padding: 40px 0 20px;">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>© 2026 কুন্দন শৈলী. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function renderCheckoutSummary() {
+            const cart = Cart.get();
+            const container = document.getElementById('checkoutItems');
+
+            if (cart.length === 0) {
+                window.location.href = 'shop.html';
+                return;
+            }
+
+            container.innerHTML = cart.map(item => `
+                <div style="display: flex; gap: 15px; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.1);">
+                    <div style="width: 60px; height: 60px; background: var(--black); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">${item.image}</div>
+                    <div style="flex: 1;">
+                        <div style="color: var(--white); font-weight: 500; font-size: 0.9rem;">${item.name}</div>
+                        <div style="color: var(--gray); font-size: 0.8rem;">Qty: ${item.quantity}</div>
+                    </div>
+                    <div style="color: var(--gold); font-weight: 600;">৳${item.price * item.quantity}</div>
+                </div>
+            `).join('');
+
+            const subtotal = Cart.getTotal();
+            const shipping = subtotal >= 1000 ? 0 : 60;
+            document.getElementById('chkSubtotal').textContent = '৳' + subtotal;
+            document.getElementById('chkShipping').textContent = shipping === 0 ? 'FREE' : '৳' + shipping;
+            document.getElementById('chkTotal').textContent = '৳' + (subtotal + shipping);
+        }
+
+        function selectPayment(radio) {
+            document.querySelectorAll('.payment-method').forEach(pm => pm.classList.remove('active'));
+            radio.closest('.payment-method').classList.add('active');
+        }
+
+        function placeOrder(e) {
+            e.preventDefault();
+            const cart = Cart.get();
+            if (cart.length === 0) {
+                Toast.show('Your cart is empty!', 'error');
+                return;
+            }
+
+            const orderData = {
+                customer: {
+                    name: document.getElementById('cName').value,
+                    phone: document.getElementById('cPhone').value,
+                    email: document.getElementById('cEmail').value,
+                    address: document.getElementById('cAddress').value,
+                    district: document.getElementById('cDistrict').value,
+                    division: document.getElementById('cDivision').value
+                },
+                items: cart,
+                payment: document.querySelector('input[name="payment"]:checked').value,
+                subtotal: Cart.getTotal(),
+                shipping: Cart.getTotal() >= 1000 ? 0 : 60,
+                total: Cart.getTotal() + (Cart.getTotal() >= 1000 ? 0 : 60)
+            };
+
+            const order = Order.place(orderData);
+            Toast.show('Order placed successfully!', 'success');
+            setTimeout(() => {
+                window.location.href = `track-order.html?id=${order.id}`;
+            }, 1500);
+        }
+
+        renderCheckoutSummary();
+    </script>
+</body>
+</html>

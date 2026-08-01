@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | কুন্দন শৈলী</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">কু</div>
+                <div class="logo-text"><h1>কুন্দন শৈলী</h1><span>Premium Glass Bangles</span></div>
+            </a>
+        </div>
+    </header>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <a href="index.html" class="logo" style="justify-content: center;">
+                    <div class="logo-icon">কু</div>
+                </a>
+                <h2>Create Account</h2>
+                <p>Join কুন্দন শৈলী for exclusive offers</p>
+            </div>
+            <form class="auth-form" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label><i>👤</i> Full Name</label>
+                    <input type="text" id="regName" required placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                    <label><i>✉️</i> Email Address</label>
+                    <input type="email" id="regEmail" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label><i>📞</i> Phone Number</label>
+                    <input type="tel" id="regPhone" required placeholder="01XXXXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label><i>🔒</i> Password</label>
+                    <input type="password" id="regPassword" required placeholder="Create a password" minlength="6">
+                </div>
+                <div class="form-group">
+                    <label><i>🔒</i> Confirm Password</label>
+                    <input type="password" id="regConfirm" required placeholder="Confirm password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block"><span>✓</span> Create Account</button>
+            </form>
+            <div class="auth-footer">
+                Already have an account? <a href="login.html">Sign In</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const phone = document.getElementById('regPhone').value;
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+
+            if (password !== confirm) {
+                Toast.show('Passwords do not match!', 'error');
+                return;
+            }
+            if (Auth.register(name, email, phone, password)) {
+                setTimeout(() => window.location.href = 'login.html', 1000);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | কুন্দন শৈলী</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <span><i>🚚</i> Free Delivery on Orders Over ৳1000</span>
+                <span><i>📞</i> +880 1234-567890</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="https://wa.me/8801234567890" target="_blank"><i>💬</i> WhatsApp</a>
+                <a href="login.html" class="auth-link"><i>👤</i> Login</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">কু</div>
+                <div class="logo-text"><h1>কুন্দন শৈলী</h1><span>Premium Glass Bangles</span></div>
+            </a>
+            <div class="header-center">
+                <div class="search-box">
+                    <input type="text" placeholder="Search for bangles...">
+                    <button>🔍</button>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="wishlist.html" class="header-action"><i>🤍</i><span class="badge wishlist-count">0</span><span>Wishlist</span></a>
+                <a href="cart.html" class="header-action"><i>🛒</i><span class="badge cart-count">0</span><span>Cart</span></a>
+            </div>
+            <div class="mobile-toggle"><span></span><span></span><span></span></div>
+        </div>
+        <nav class="nav-menu">
+            <div class="nav-menu-content">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="shop.html?category=bridal">Collection</a></li>
+                    <li><a href="shop.html?sort=new">New Arrival</a></li>
+                    <li><a href="shop.html?category=bridal">Bridal</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="index.html">Home</a> <i>▸</i> <a href="shop.html">Shop</a> <i>▸</i> <span id="breadcrumbName">Product</span>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="product-detail" id="productDetail"></div>
+
+            <!-- Related Products -->
+            <div style="margin-top: 80px;">
+                <div class="section-header">
+                    <h2>You May Also Like</h2>
+                </div>
+                <div class="products-grid" id="relatedProducts"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" style="padding: 40px 0 20px;">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>© 2026 কুন্দন শৈলী. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/8801234567890" class="whatsapp-float" target="_blank">💬</a>
+    <button class="scroll-top">↑</button>
+
+    <script src="js/main.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('id')) || 1;
+        const product = products.find(p => p.id === productId) || products[0];
+
+        document.getElementById('breadcrumbName').textContent = product.name;
+        document.title = product.name + ' | কুন্দন শৈলী';
+
+        let selectedColor = product.colors[0];
+        let selectedSize = product.sizes[0];
+        let quantity = 1;
+
+        function renderProductDetail() {
+            const discount = product.originalPrice > product.price ? Math.round((1 - product.price / product.originalPrice) * 100) : 0;
+
+            document.getElementById('productDetail').innerHTML = `
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <div style="font-size: 10rem;">${product.image}</div>
+                    </div>
+                    <div class="thumbnail-list">
+                        ${product.colors.map((c, i) => `
+                            <div class="thumbnail ${i === 0 ? 'active' : ''}" onclick="changeImage(this)">
+                                <div style="font-size: 2rem;">${product.image}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="product-info-detail">
+                    ${product.badge ? `<span class="product-badge ${product.badge}" style="position: static; display: inline-block; margin-bottom: 15px;">${product.badge.toUpperCase()}</span>` : ''}
+                    <h1>${product.name}</h1>
+                    <div class="product-meta">
+                        <span><i>⭐</i> ${product.rating} (${product.reviews} reviews)</span>
+                        <span><i>📦</i> In Stock</span>
+                        <span><i>🏷</i> ${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</span>
+                    </div>
+                    <div class="product-price-detail">
+                        <span class="current">৳${product.price}</span>
+                        ${product.originalPrice > product.price ? `<span class="original">৳${product.originalPrice}</span><span class="discount">-${discount}%</span>` : ''}
+                    </div>
+                    <p style="color: var(--gray); line-height: 1.8; margin-bottom: 25px;">${product.description}</p>
+
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label>Color</label>
+                            <div class="option-buttons" id="colorOptions">
+                                ${product.colors.map(c => `<button class="option-btn ${c === selectedColor ? 'active' : ''}" onclick="selectColor('${c}', this)">${c}</button>`).join('')}
+                            </div>
+                        </div>
+                        <div class="option-group">
+                            <label>Size</label>
+                            <div class="option-buttons" id="sizeOptions">
+                                ${product.sizes.map(s => `<button class="option-btn ${s === selectedSize ? 'active' : ''}" onclick="selectSize('${s}', this)">${s}</button>`).join('')}
+                            </div>
+                        </div>
+                        <div class="option-group">
+                            <label>Quantity</label>
+                            <div class="quantity-selector">
+                                <button onclick="updateQty(-1)">−</button>
+                                <input type="text" id="qtyInput" value="1" readonly>
+                                <button onclick="updateQty(1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-actions-detail">
+                        <button class="btn btn-primary" onclick="addToCart()" style="flex: 1;"><span>🛒</span> Add to Cart</button>
+                        <button class="btn btn-outline" onclick="toggleWishlist()" id="wishlistBtn"><span>${Wishlist.isInWishlist(product.id) ? '❤️' : '🤍'}</span> Wishlist</button>
+                    </div>
+
+                    <div class="product-tabs">
+                        <div class="tab-nav">
+                            <button class="active" onclick="switchTab(this, 'desc')">Description</button>
+                            <button onclick="switchTab(this, 'reviews')">Reviews (${product.reviews})</button>
+                            <button onclick="switchTab(this, 'shipping')">Shipping</button>
+                        </div>
+                        <div class="tab-content" id="tabDesc">
+                            <p>${product.description}</p>
+                            <p>Our glass bangles are handcrafted by skilled artisans using traditional Bengali techniques. Each piece is carefully made to ensure durability and elegance.</p>
+                            <ul style="color: var(--gray); margin-top: 15px; padding-left: 20px;">
+                                <li>Handcrafted glass material</li>
+                                <li>Traditional Bengali design</li>
+                                <li>Available in multiple sizes</li>
+                                <li>Perfect for all occasions</li>
+                            </ul>
+                        </div>
+                        <div class="tab-content" id="tabReviews" style="display: none;">
+                            <div style="margin-bottom: 20px;">
+                                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                                    <div style="font-size: 3rem; font-weight: 700; color: var(--gold);">${product.rating}</div>
+                                    <div>
+                                        <div style="color: var(--gold); font-size: 1.2rem;">${Render.stars(product.rating)}</div>
+                                        <div style="color: var(--gray); font-size: 0.9rem;">Based on ${product.reviews} reviews</div>
+                                    </div>
+                                </div>
+                            </div>
+                            ${reviews.map(r => `
+                                <div style="padding: 20px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1);">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center;">${r.avatar}</div>
+                                            <div><strong style="color: var(--white);">${r.name}</strong><div style="color: var(--gray); font-size: 0.8rem;">${r.location}</div></div>
+                                        </div>
+                                        <div style="color: var(--gold);">${Render.stars(r.rating)}</div>
+                                    </div>
+                                    <p style="color: var(--gray);">${r.text}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="tab-content" id="tabShipping" style="display: none;">
+                            <p>🚚 <strong style="color: var(--white);">Free Delivery</strong> on orders over ৳1000</p>
+                            <p>📦 Standard delivery: 3-5 business days</p>
+                            <p>⚡ Express delivery: 1-2 business days (additional charges apply)</p>
+                            <p>🔄 Easy returns within 7 days of delivery</p>
+                            <p>💰 Cash on Delivery available nationwide</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function changeImage(el) {
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function selectColor(color, btn) {
+            selectedColor = color;
+            document.querySelectorAll('#colorOptions .option-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function selectSize(size, btn) {
+            selectedSize = size;
+            document.querySelectorAll('#sizeOptions .option-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function updateQty(change) {
+            quantity = Math.max(1, quantity + change);
+            document.getElementById('qtyInput').value = quantity;
+        }
+
+        function addToCart() {
+            Cart.add(product, quantity, selectedColor, selectedSize);
+        }
+
+        function toggleWishlist() {
+            const added = Wishlist.toggle(product);
+            document.getElementById('wishlistBtn').innerHTML = `<span>${added ? '❤️' : '🤍'}</span> Wishlist`;
+            Wishlist.updateUI();
+        }
+
+        function switchTab(btn, tab) {
+            document.querySelectorAll('.tab-nav button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('tabDesc').style.display = tab === 'desc' ? 'block' : 'none';
+            document.getElementById('tabReviews').style.display = tab === 'reviews' ? 'block' : 'none';
+            document.getElementById('tabShipping').style.display = tab === 'shipping' ? 'block' : 'none';
+        }
+
+        renderProductDetail();
+
+        // Related products
+        const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+        Render.products(document.getElementById('relatedProducts'), related.length ? related : products.slice(0, 4));
+    </script>
+</body>
+</html>

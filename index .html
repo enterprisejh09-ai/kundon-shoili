@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুন্দন শৈলী | Premium Glass Bangles</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <span><i>🚚</i> Free Delivery on Orders Over ৳1000</span>
+                <span><i>📞</i> +880 1234-567890</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="https://wa.me/8801234567890" target="_blank"><i>💬</i> WhatsApp</a>
+                <a href="#"><i>📘</i> Facebook</a>
+                <a href="login.html" class="auth-link"><i>👤</i> Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">কু</div>
+                <div class="logo-text">
+                    <h1>কুন্দন শৈলী</h1>
+                    <span>Premium Glass Bangles</span>
+                </div>
+            </a>
+            <div class="header-center">
+                <div class="search-box">
+                    <input type="text" placeholder="Search for bangles, collections...">
+                    <button>🔍</button>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="wishlist.html" class="header-action">
+                    <i>🤍</i>
+                    <span class="badge wishlist-count">0</span>
+                    <span>Wishlist</span>
+                </a>
+                <a href="cart.html" class="header-action">
+                    <i>🛒</i>
+                    <span class="badge cart-count">0</span>
+                    <span>Cart</span>
+                </a>
+            </div>
+            <div class="mobile-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <nav class="nav-menu">
+            <div class="nav-menu-content">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="shop.html?category=bridal">Collection</a></li>
+                    <li><a href="shop.html?sort=new">New Arrival</a></li>
+                    <li><a href="shop.html?category=bridal">Bridal</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-badge">✨ Premium Collection 2026</div>
+            <h2>রঙে রঙে ফুটে উঠুক <span>আপনার সৌন্দর্য</span></h2>
+            <p>Handcrafted glass bangles inspired by Bengali heritage. Elevate your style with our exclusive premium collections.</p>
+            <div class="hero-buttons">
+                <a href="shop.html" class="btn btn-primary"><span>🛍</span> Shop Now</a>
+                <a href="shop.html?category=bridal" class="btn btn-outline"><span>💎</span> Bridal Collection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Shop by Category</h2>
+                <p>Explore our exquisite collections crafted for every occasion</p>
+            </div>
+            <div class="categories-grid">
+                <a href="shop.html?category=bridal" class="category-card">
+                    <div class="category-icon">💎</div>
+                    <div class="category-info">
+                        <h3>Bridal</h3>
+                        <span>45 Products</span>
+                    </div>
+                </a>
+                <a href="shop.html?category=premium" class="category-card">
+                    <div class="category-icon">👑</div>
+                    <div class="category-info">
+                        <h3>Premium</h3>
+                        <span>32 Products</span>
+                    </div>
+                </a>
+                <a href="shop.html?category=festival" class="category-card">
+                    <div class="category-icon">🎉</div>
+                    <div class="category-info">
+                        <h3>Festival</h3>
+                        <span>58 Products</span>
+                    </div>
+                </a>
+                <a href="shop.html?category=daily" class="category-card">
+                    <div class="category-icon">✨</div>
+                    <div class="category-info">
+                        <h3>Daily Wear</h3>
+                        <span>76 Products</span>
+                    </div>
+                </a>
+                <a href="shop.html?category=kids" class="category-card">
+                    <div class="category-icon">🧸</div>
+                    <div class="category-info">
+                        <h3>Kids</h3>
+                        <span>24 Products</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals -->
+    <section class="section" style="background: linear-gradient(180deg, var(--black) 0%, var(--black-light) 100%);">
+        <div class="container">
+            <div class="section-header">
+                <h2>New Arrivals</h2>
+                <p>Discover our latest handcrafted glass bangle collections</p>
+            </div>
+            <div class="products-grid" id="newArrivals"></div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="shop.html?sort=new" class="btn btn-outline">View All New Arrivals</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Best Sellers</h2>
+                <p>Our most loved bangles by customers across Bangladesh</p>
+            </div>
+            <div class="products-grid" id="bestSellers"></div>
+        </div>
+    </section>
+
+    <!-- Special Offer -->
+    <section class="section" style="background: linear-gradient(180deg, var(--black-light) 0%, var(--black) 100%);">
+        <div class="container">
+            <div class="special-offer">
+                <div class="offer-content">
+                    <h3>Limited Time <span>Special Offer</span></h3>
+                    <p>Get up to 30% off on our exclusive bridal collection. Handcrafted with love, designed for your special day.</p>
+                    <div class="countdown">
+                        <div class="countdown-item"><span class="number">03</span><span class="label">Days</span></div>
+                        <div class="countdown-item"><span class="number">12</span><span class="label">Hours</span></div>
+                        <div class="countdown-item"><span class="number">45</span><span class="label">Mins</span></div>
+                        <div class="countdown-item"><span class="number">30</span><span class="label">Secs</span></div>
+                    </div>
+                    <a href="shop.html?category=bridal" class="btn btn-primary"><span>🛍</span> Shop Now</a>
+                </div>
+                <div class="offer-image">
+                    <div style="font-size: 12rem; filter: drop-shadow(0 20px 40px rgba(212, 175, 55, 0.3));">💎</div>
+                    <div class="discount-badge"><span>30%</span><small>OFF</small></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Customer Reviews</h2>
+                <p>What our valued customers say about কুন্দন শৈলী</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Absolutely stunning bangles! The quality is exceptional and the colors are so vibrant. Perfect for my sister's wedding!"</p>
+                    <div class="review-author">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">👩</div>
+                        <div><h4>Rina Das</h4><span>Dhaka</span></div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Best glass bangles I've ever purchased. The craftsmanship is beautiful and they arrived perfectly packaged."</p>
+                    <div class="review-author">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">👩‍🦱</div>
+                        <div><h4>Priya Saha</h4><span>Chittagong</span></div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★☆</div>
+                    <p class="review-text">"Love the variety and the prices are reasonable. Fast delivery and excellent customer service. Will order again!"</p>
+                    <div class="review-author">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">👩‍🦰</div>
+                        <div><h4>Anika Rahman</h4><span>Sylhet</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Gallery -->
+    <section class="section" style="background: linear-gradient(180deg, var(--black) 0%, var(--black-light) 100%);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Follow Us on Instagram</h2>
+                <p>@kundonshoili — Share your style with #কুন্দনশৈলী</p>
+            </div>
+            <div class="instagram-grid">
+                <div class="instagram-item"><div style="width: 100%; height: 100%; background: linear-gradient(135deg, #ff6b6b, #ee5a24); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🔴</div><div class="instagram-overlay"><i>📷</i></div></div>
+                <div class="instagram-item"><div style="width: 100%; height: 100%; background: linear-gradient(135deg, #4834d4, #686de0); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🔵</div><div class="instagram-overlay"><i>📷</i></div></div>
+                <div class="instagram-item"><div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f9ca24, #f0932b); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🟡</div><div class="instagram-overlay"><i>📷</i></div></div>
+                <div class="instagram-item"><div style="width: 100%; height: 100%; background: linear-gradient(135deg, #6ab04c, #badc58); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🟢</div><div class="instagram-overlay"><i>📷</i></div></div>
+                <div class="instagram-item"><div style="width: 100%; height: 100%; background: linear-gradient(135deg, #e056fd, #be2edd); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🟣</div><div class="instagram-overlay"><i>📷</i></div></div>
+                <div class="instagram-item"><div style="width: 100%; height: 100%; background: linear-gradient(135deg, #ff9ff3, #f368e0); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🩷</div><div class="instagram-overlay"><i>📷</i></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section">
+        <div class="container">
+            <div class="newsletter">
+                <h3>Subscribe to Our Newsletter</h3>
+                <p>Get exclusive offers, new arrival updates, and special discounts directly to your inbox.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); Toast.show('Thank you for subscribing!', 'success'); this.reset();">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">কু</div>
+                        <div class="logo-text">
+                            <h1 style="font-size: 1.3rem;">কুন্দন শৈলী</h1>
+                            <span>Premium Glass Bangles</span>
+                        </div>
+                    </a>
+                    <p>কুন্দন শৈলী brings you the finest handcrafted glass bangles, blending traditional Bengali artistry with modern elegance. Each piece tells a story of heritage and beauty.</p>
+                    <div class="footer-social">
+                        <a href="#">📘</a>
+                        <a href="#">📸</a>
+                        <a href="#">🐦</a>
+                        <a href="#">▶️</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="track-order.html">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="shop.html?category=bridal">Bridal Collection</a></li>
+                        <li><a href="shop.html?category=premium">Premium</a></li>
+                        <li><a href="shop.html?category=festival">Festival</a></li>
+                        <li><a href="shop.html?category=daily">Daily Wear</a></li>
+                        <li><a href="shop.html?category=kids">Kids</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="account.html">My Account</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="cart.html">Shopping Cart</a></li>
+                        <li><a href="track-order.html">Order Tracking</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i>📍</i> 123 Mirpur Road, Dhaka 1207, Bangladesh</p>
+                    <p><i>📞</i> +880 1234-567890</p>
+                    <p><i>✉️</i> info@kundonshoili.com</p>
+                    <p><i>🕐</i> Sat - Thu: 10AM - 8PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 কুন্দন শৈলী. All Rights Reserved. Crafted with 💛 in Bangladesh.</p>
+                <div class="footer-payment">
+                    <span style="padding: 5px 15px; background: rgba(255,255,255,0.1); border-radius: 5px; color: var(--gray); font-size: 0.8rem;">bKash</span>
+                    <span style="padding: 5px 15px; background: rgba(255,255,255,0.1); border-radius: 5px; color: var(--gray); font-size: 0.8rem;">Nagad</span>
+                    <span style="padding: 5px 15px; background: rgba(255,255,255,0.1); border-radius: 5px; color: var(--gray); font-size: 0.8rem;">COD</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/8801234567890" class="whatsapp-float" target="_blank">💬</a>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top">↑</button>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Render New Arrivals (products with "new" badge)
+        const newArrivals = products.filter(p => p.badge === 'new').slice(0, 4);
+        Render.products(document.getElementById('newArrivals'), newArrivals);
+
+        // Render Best Sellers (top rated)
+        const bestSellers = [...products].sort((a, b) => b.reviews - a.reviews).slice(0, 4);
+        Render.products(document.getElementById('bestSellers'), bestSellers);
+    </script>
+</body>
+</html>
